@@ -44,7 +44,9 @@ Returns a background publication job.
 | *invalid_file_format* | The source file is not a valid Roambi Analytics source file. |
 | *invalid_resource* | Specified file does not exist. |
 
-### Example request:
+### Example requests
+
+#### Remote Source File (File exists in the Roambi Library)
 ```
 # curl https://api.roambi.com/1/accounts/`$ACCOUNT_UID`/files/analytics \
 -H "Authorization: Bearer `$ACCESS_TOKEN`" \
@@ -54,6 +56,20 @@ Returns a background publication job.
   "folder_uid" : "`$FOLDER_UID`", \
   "overwrite" : true}' \
 -X POST
+```
+
+#### Local Source File
+```bash
+$> curl https://api.roambi.com/1/accounts/6d86fe02-adc3-4eb7-9caf-889f1adf33c7/files/analytics \
+      -H 'Authorization: Bearer 1/k7lSGo_4JDTjR6GM9iQX9eEKcW5m4Wu5rmMkA-TGsBk9obLtmhnRXmkyI2mE2TGVDFzZXpS8eDhDD2dzl8kYaBGEMkNAORi4TRYR7-ibkac=|ArXS6blvpbZAFH3G-PM3Gw==' \
+      -F publish_options='{ \
+                            "template_uid":"5201526be4b02842ad9a0bfc", \
+                            "overwrite":"true", \
+                            "folder_uid":"538573e7e4b0f8cae9752567", \
+                            "title":"MyNewRbiFromLocalFile" \
+                          }' \
+      -F source_file=@'CataListSourceData.xls' \
+      -X POST
 ```
 
 ### Example response:
