@@ -47,7 +47,7 @@ Returns a background publication job.
 ### Example requests
 
 #### Remote Source File (File exists in the Roambi Library)
-```
+```bash
 # curl https://api.roambi.com/1/accounts/`$ACCOUNT_UID`/files/analytics \
 -H "Authorization: Bearer `$ACCESS_TOKEN`" \
 -d '{"title" : "`$TITLE`", \
