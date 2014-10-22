@@ -1,9 +1,6 @@
 # Resource:  analytics_files
 The `analytics_files` resource exposes Analytics publishing via the API.
 
-## Resource Definition
-
-## Endpoints
 
 ### Create analytics_file
 This endpoint supports two request modes
@@ -11,45 +8,65 @@ This endpoint supports two request modes
 1.  remote source file (source file stored in Roambi Business)
 2.  local source file (source file on the client machine)
 
-#### Endpoint
+
+### Method
 `POST /1/accounts/${ACCOUNT_UID}/files/analytics`
 
-#### Parameters
-Requests to this endpoint must provide a json body that contains the following
-properties:
 
-* overwrite_existing (required, boolean)
-* title (required, String)
-* template_uid (required, uuid)
-* source_file_uid (optional, uuid)
-* source_file (optional, multipart form upload)
+### Parameters:
+| Parameter | Required? | Data type | Description |
+|-----|-----|-----|-----|
+| *template_uid* | Yes | string | ID of the RBI template. |
+| *title* | Yes | string | Title of the published file. |
+| *source_file_uid* | No | string | ID of the data source file. Can be provided instead of *source_file*; see notes below |
+| *source_file* | No | File | Can be provided instead of *source_file_uid*; see notes below. |
+| *folder_uid* | Yes | string | ID of the folder where the published RBI will be located. |
+| *overwrite* | No | boolean | Specify "true" to overwrite an existing Roambi Analytics file in the same directory. |
 
-IF publishing with a remote source file, then all parameters must be submitted
+Notes:
+* IF publishing with a remote source file, then all parameters must be submitted
 as a JSON body.
-
-IF publishing with a local source file, then all parameters must be individually
+* IF publishing with a local source file, then all parameters must be individually
 specified as part of a multipart/form-upload request.
 
-Sample JSON body (remote source file):
-```json
-{
-  "overwrite_existing" : "true",
-  "title" : "My New Roambi",
-  "template_uid" : "0045407b-19f5-4b90-9148-d418209c7e90",
-  "source_file_uid" : "53f29a50036495f25ccf6782"
-}
-```
-### Request samples
-Using curl (remote source file):
 
-```bash
-curl https://api.roambi.com/1/accounts/74f331e2-f78b-4948-bca2-a230ee351f1d/files/analytics \
-  -H "Authorization: Bearer $ACCESS_TOKEN" \
-  -X POST
-  -d '{ \
-      "title": "My New Roambi", \
-      "overwrite_existing": true, \
-      "template_uid" : "0045407b-19f5-4b90-9148-d418209c7e90", \
-      "source_file_uid" : "53f29a50036495f25ccf6782"
-     }'
+### Returns:
+
+Returns a background publication job.
+
+
+### Error responses:
+
+| Error Code | Description |
+|-----|-----|-----|
+| *file_exists* | The "overwrite" property was set to false and a file with the same name already exists in the target folder. |
+| *access_denied* | User does not have access to at least one resource related to this request. This may include trying to write to a read-only destination. |
+| *invalid_file_format* | The source file is not a valid Roambi Analytics source file. |
+| *invalid_resource* | Specified file does not exist. |
+
+### Example request:
+```
+# curl https://api.roambi.com/1/accounts/`$ACCOUNT_UID`/files/analytics \
+-H "Authorization: Bearer `$ACCESS_TOKEN`" \
+-d '{"title" : "`$TITLE`", \
+  "template_uid" : "`$TEMPLATE_UID`", \
+  "source_file_uid" : "`$SOURCE_FILE_UID`", \
+  "folder_uid" : "`$FOLDER_UID`", \
+  "overwrite" : true}' \
+-X POST
+```
+
+### Example response:
+```
+{
+  "job": {
+    "uid": "51771b6484...",
+    "progress": 0,
+    "status": "processing",
+    "exception": null,
+    "results": null,
+    "retry_after": 3,
+    "status_url": "/api/1/job/a6593d94-155..."
+  }
+}
 ```
