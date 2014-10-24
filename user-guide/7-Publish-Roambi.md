@@ -24,9 +24,9 @@ This endpoint supports two request modes
 | *overwrite* | No | boolean | Specify "true" to overwrite an existing Roambi Analytics file in the same directory. |
 
 Notes:
-\* IF publishing with a remote source file, then all parameters must be submitted as a JSON body.
-\* IF publishing with a local source file, then all parameters must be individually specified as part of a multipart/form-upload request.
-\* Only account administrator or the personal folder's owner is allowed to publish to that personal folder.
+* IF publishing with a remote source file, then all parameters must be submitted as a JSON body.
+* IF publishing with a local source file, then all parameters must be individually specified as part of a multipart/form-upload request.
+* Only account administrator or the personal folder's owner is allowed to publish to that personal folder.
 
 ### Returns:
 
