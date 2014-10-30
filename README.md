@@ -12,3 +12,6 @@ content of the "folder".
 
 The Roambi SDK provides a set of JAVA client libraries that help you develop apps
 to integrate with Roambi via Roambi API.
+
+## User Guide
+The Roambi API User Guide can be found [here](user-guide)
