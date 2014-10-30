@@ -20,15 +20,13 @@ This endpoint supports two request modes
 | *title* | Yes | string | Title of the published file. |
 | *source_file_uid* | No | string | ID of the data source file. Can be provided instead of *source_file*; see notes below |
 | *source_file* | No | File | Can be provided instead of *source_file_uid*; see notes below. |
-| *folder_uid* | Yes | string | ID of the folder where the published RBI will be located. |
+| *folder_uid* | Yes | string | ID of the folder where the published RBI will be located. Alternately specify email of a user for his personal folder. |
 | *overwrite* | No | boolean | Specify "true" to overwrite an existing Roambi Analytics file in the same directory. |
 
 Notes:
-* IF publishing with a remote source file, then all parameters must be submitted
-as a JSON body.
-* IF publishing with a local source file, then all parameters must be individually
-specified as part of a multipart/form-upload request.
-
+* IF publishing with a remote source file, then all parameters must be submitted as a JSON body.
+* IF publishing with a local source file, then all parameters must be individually specified as part of a multipart/form-upload request.
+* Only account administrator or the personal folder's owner is allowed to publish to that personal folder.
 
 ### Returns:
 
