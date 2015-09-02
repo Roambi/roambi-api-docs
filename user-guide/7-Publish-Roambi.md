@@ -46,12 +46,12 @@ Returns a background publication job.
 
 #### Remote Source File (File exists in the Roambi Library)
 ```bash
-# curl https://api.roambi.com/1/accounts/`$ACCOUNT_UID`/files/analytics \
+$> curl https://api.roambi.com/1/accounts/`$ACCOUNT_UID`/files/analytics \
 -H "Authorization: Bearer `$ACCESS_TOKEN`" \
--d '{"title" : "`$TITLE`", \
-  "template_uid" : "`$TEMPLATE_UID`", \
-  "source_file_uid" : "`$SOURCE_FILE_UID`", \
-  "folder_uid" : "`$FOLDER_UID`", \
+-d '{"title" : "`$TITLE`",
+  "template_uid" : "`$TEMPLATE_UID`",
+  "source_file_uid" : "`$SOURCE_FILE_UID`",
+  "folder_uid" : "`$FOLDER_UID`",
   "overwrite" : true}' \
 -X POST
 ```
@@ -60,11 +60,11 @@ Returns a background publication job.
 ```bash
 $> curl https://api.roambi.com/1/accounts/6d86fe02-adc3-4eb7-9caf-889f1adf33c7/files/analytics \
       -H 'Authorization: Bearer 1/k7lSGo_4JDTjR6GM9iQX9eEKcW5m4Wu5rmMkA-TGsBk9obLtmhnRXmkyI2mE2TGVDFzZXpS8eDhDD2dzl8kYaBGEMkNAORi4TRYR7-ibkac=|ArXS6blvpbZAFH3G-PM3Gw==' \
-      -F publish_options='{ \
-                            "template_uid":"5201526be4b02842ad9a0bfc", \
-                            "overwrite":"true", \
-                            "folder_uid":"538573e7e4b0f8cae9752567", \
-                            "title":"MyNewRbiFromLocalFile" \
+      -F publish_options='{
+                            "template_uid":"5201526be4b02842ad9a0bfc",
+                            "overwrite":"true",
+                            "folder_uid":"538573e7e4b0f8cae9752567",
+                            "title":"MyNewRbiFromLocalFile"
                           }' \
       -F source_file=@'CataListSourceData.xls' \
       -X POST
