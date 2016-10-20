@@ -35,30 +35,30 @@ Returns summary details for the folder as a confirmation.
 ```
 
 ### Example response:
-```
+```json
 {
-"folder": {
-"permissions": {
-"everyone": false,
-"users": [
-{
-"access": "write",
-"uid": "38150cfc-6c3f-4..."
-}
-],
-"groups": [
-{
-"access": "read",
-"uid": "51db3573c2..."
-}
-]
-},
-"updated_at": "2013-07-08",
-"created_at": "2013-07-08",
-"file_type": "FOLDER",
-"read_only": false,
-"title": "carlos2",
-"uid": "51db3434c2e6..."
-}
+  "folder": {
+    "permissions": {
+      "everyone": false,
+      "users": [
+        {
+          "access": "write",
+          "uid": "38150cfc-6c3f-4..."
+        }
+      ],
+      "groups": [
+        {
+          "access": "read",
+          "uid": "51db3573c2..."
+        }
+      ]
+    },
+    "updated_at": "2013-07-08",
+    "created_at": "2013-07-08",
+    "file_type": "FOLDER",
+    "read_only": false,
+    "title": "carlos2",
+    "uid": "51db3434c2e6..."
+  }
 }
 ```
